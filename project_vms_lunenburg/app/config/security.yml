@@ -5,7 +5,39 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory: 
+                users:
+                    magzijnmeester:
+                        password: magazijn1
+                        roles: 'ROLE_MAGAZIJN'
+                    inkoper:
+                        password: inkoper1
+                        roles: 'ROLE_INKOPER'
+                    beheerder:
+                        password: beheerder1
+                        roles: 'ROLE_BEHEERDER'
+                    expediteur:
+                        password: expediteur1
+                        roles: 'ROLE_EXPEDITEUR'
+                    ontwikkelaar:
+                        password: ontwikkelaar1
+                        roles: 'ROLE_ONTWIKKELAAR'
+                    reperateur:
+                        password: reperateur1
+                        roles: 'ROLE_ONTWIKKELAAR'
+                    verkoper:
+                        password: verkoper1
+                        roles: 'ROLE_VERKOPER'
+                    hoofd_financien:
+                        password: financien1
+                        roles: ROLE_HOOFDFINANCIEN
+
+
+    #access_control:
+    #    - {path '#/*' , roles:[ROLE_INKOPER]} #vul bij het ^/* de route in die is aangemaakt naar het wijzigen van de minimale voorraad.
+
+    encoders:
+            Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -18,7 +50,7 @@ security:
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+            http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
