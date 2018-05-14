@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artikel</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Naam</th>
+                <td>{{ artikel.naam }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ artikel.omschrijving }}</td>
+            </tr>
+            <tr>
+                <th>Technischespecificatie</th>
+                <td>{{ artikel.technischespecificatie }}</td>
+            </tr>
+            <tr>
+                <th>Inkoopprijs</th>
+                <td>{{ artikel.inkoopprijs }}</td>
+            </tr>
+            <tr>
+                <th>Minimalevoorraad</th>
+                <td>{{ artikel.minimaleVoorraad }}</td>
+            </tr>
+            <tr>
+                <th>Aantalvoorraad</th>
+                <td>{{ artikel.aantalVoorraad }}</td>
+            </tr>
+            <tr>
+                <th>Bestelserie</th>
+                <td>{{ artikel.bestelserie }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ artikel.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artikel_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('artikel_edit', { 'id': artikel.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

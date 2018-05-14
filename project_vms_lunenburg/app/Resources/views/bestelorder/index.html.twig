@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bestelorders list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Aantal</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bestelorder in bestelorders %}
+            <tr>
+                <td><a href="{{ path('bestelorder_show', { 'id': bestelorder.id }) }}">{{ bestelorder.aantal }}</a></td>
+                <td>{{ bestelorder.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bestelorder_show', { 'id': bestelorder.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bestelorder_edit', { 'id': bestelorder.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bestelorder_new') }}">Create a new bestelorder</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Goederen" table="goederen">
+    <indexes>
+      <index name="leverancier_id" columns="leverancier_id"/>
+      <index name="status" columns="status"/>
+      <index name="id_artikel" columns="id_artikel"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="hoeveelheid" type="integer" column="hoeveelheid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="kwaliteit" type="string" column="kwaliteit" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="beschrijving" type="text" column="beschrijving" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ontvangstdatum" type="date" column="ontvangstdatum" nullable="false"/>
+    <many-to-one field="idArtikel" target-entity="Artikel" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_artikel" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="status" target-entity="Status" fetch="LAZY">
+      <join-columns>
+        <join-column name="status" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="leverancier" target-entity="Leverancier" fetch="LAZY">
+      <join-columns>
+        <join-column name="leverancier_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

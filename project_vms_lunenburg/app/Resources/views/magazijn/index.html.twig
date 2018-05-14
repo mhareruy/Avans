@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Magazijns list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Locatienummer</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for magazijn in magazijns %}
+            <tr>
+                <td><a href="{{ path('magazijn_show', { 'id': magazijn.id }) }}">{{ magazijn.locatienummer }}</a></td>
+                <td>{{ magazijn.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('magazijn_show', { 'id': magazijn.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('magazijn_edit', { 'id': magazijn.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('magazijn_new') }}">Create a new magazijn</a>
+        </li>
+    </ul>
+{% endblock %}

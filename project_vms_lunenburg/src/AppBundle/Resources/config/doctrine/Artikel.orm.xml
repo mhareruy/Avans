@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Artikel" table="artikel">
+    <indexes>
+      <index name="magazijnlocatie" columns="magazijnlocatie"/>
+      <index name="alternatief_artikel" columns="alternatief_artikel"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="naam" type="string" column="naam" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="omschrijving" type="text" column="omschrijving" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="technischespecificatie" type="text" column="technischespecificatie" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="inkoopprijs" type="decimal" column="inkoopprijs" precision="10" scale="0" nullable="false"/>
+    <field name="minimaleVoorraad" type="integer" column="minimale_voorraad" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="aantalVoorraad" type="integer" column="aantal_voorraad" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="bestelserie" type="integer" column="bestelserie" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="alternatiefArtikel" target-entity="Artikel" fetch="LAZY">
+      <join-columns>
+        <join-column name="alternatief_artikel" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="magazijnlocatie" target-entity="Magazijn" fetch="LAZY">
+      <join-columns>
+        <join-column name="magazijnlocatie" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

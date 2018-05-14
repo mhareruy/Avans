@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Leveranciers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for leverancier in leveranciers %}
+            <tr>
+                <td><a href="{{ path('leverancier_show', { 'id': leverancier.id }) }}">{{ leverancier.naam }}</a></td>
+                <td>{{ leverancier.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('leverancier_show', { 'id': leverancier.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('leverancier_edit', { 'id': leverancier.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('leverancier_new') }}">Create a new leverancier</a>
+        </li>
+    </ul>
+{% endblock %}

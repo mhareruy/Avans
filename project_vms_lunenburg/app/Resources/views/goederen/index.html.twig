@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Goederens list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Hoeveelheid</th>
+                <th>Kwaliteit</th>
+                <th>Beschrijving</th>
+                <th>Ontvangstdatum</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for goederen in goederens %}
+            <tr>
+                <td><a href="{{ path('goederen_show', { 'id': goederen.id }) }}">{{ goederen.hoeveelheid }}</a></td>
+                <td>{{ goederen.kwaliteit }}</td>
+                <td>{{ goederen.beschrijving }}</td>
+                <td>{% if goederen.ontvangstdatum %}{{ goederen.ontvangstdatum|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ goederen.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('goederen_show', { 'id': goederen.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('goederen_edit', { 'id': goederen.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('goederen_new') }}">Create a new goederen</a>
+        </li>
+    </ul>
+{% endblock %}

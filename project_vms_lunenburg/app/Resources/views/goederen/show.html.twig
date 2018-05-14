@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Goederen</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Hoeveelheid</th>
+                <td>{{ goederen.hoeveelheid }}</td>
+            </tr>
+            <tr>
+                <th>Kwaliteit</th>
+                <td>{{ goederen.kwaliteit }}</td>
+            </tr>
+            <tr>
+                <th>Beschrijving</th>
+                <td>{{ goederen.beschrijving }}</td>
+            </tr>
+            <tr>
+                <th>Ontvangstdatum</th>
+                <td>{% if goederen.ontvangstdatum %}{{ goederen.ontvangstdatum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ goederen.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('goederen_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('goederen_edit', { 'id': goederen.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
